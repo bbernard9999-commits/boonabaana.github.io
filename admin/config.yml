@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: boonabaana/boonabaana.github.io
+  repo: bbernard9999-commits/bbernard9999-commits.github.io
   branch: main
 
 media_folder: "assets/uploads"
