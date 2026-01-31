@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Post • Boonabaana’s Nuggets</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="./">Boonabaana’s Nuggets</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <a class="backlink" href="./">← Back</a>
+
+    <article class="card post">
+      <h1 id="title">Loading…</h1>
+      <p id="meta"></p>
+      <div id="content"></div>
+    </article>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Boonabaana.</p>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("slug");
+
+    fetch("posts/posts.json")
+      .then(res => res.json())
+      .then(posts => {
+        const post = posts.find(p => p.slug === slug);
+        if (!post) return;
+
+        document.title = post.title + " • Boonabaana’s Nuggets";
+        document.getElementById("title").textContent = post.title;
+        document.getElementById("meta").textContent =
+          post.date + " • " + post.readTime;
+
+        fetch("posts/" + post.file)
+          .then(res => res.text())
+          .then(md => {
+            document.getElementById("content").innerHTML = marked.parse(md);
+          });
+      });
+  </script>
+</body>
+</html>
