@@ -1,0 +1,11 @@
+name: Decap CMS Auth
+
+on:
+  workflow_dispatch:
+
+jobs:
+  auth:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decap CMS Auth
+        uses: nwtgck/actions-netlify@v2
