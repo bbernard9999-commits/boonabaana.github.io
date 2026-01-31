@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: bbernard9999-commits/bbernard9999-commits.github.io
+  name: git-gateway
   branch: main
 
 media_folder: "assets/uploads"
